@@ -11,15 +11,15 @@ CryptoARC operates on the principles of DHCP-based server discovery and secure R
 
 ### 3.1 DHCP Options
 
-1. Option X (Server IP Address): Specifies the IP address of the management server to which devices should connect for registration.
-2. Option Y (Public Key): Optionally provides a base64-encoded public key for encrypting registration data, ensuring secure transmission between devices and servers.
+1. Option 240 (Server IP Address): Specifies the IP address(es) of the management server to which devices should connect for registration.
+2. Option 241 (Public Key): Optionally provides a base64-encoded public key for encrypting registration data, ensuring secure transmission between devices and servers.
 
 ### 3.2 Device Registration Process
 
-1. DHCP Option Reception: Devices receive DHCP options X and optionally Y upon network connection.
-2. Server Identification: Devices initiate a RESTful POST request to the server IP specified in Option X.
-3. Registration Payload: Devices send registration data, including serial numbers, device types, MAC addresses, and optionally additional parameters like manufacturer details or model information.
-4. Server Processing: The management server validates and stores device information in a central database.
+1. DHCP Option Reception: Devices receive DHCP options 240 and optionally 241 upon network connection.
+2. Server Identification: Devices initiate a RESTful POST request to the server IP specified in Option 240.
+3. Registration Payload: Devices send registration data, including a mandatory unique identifier, as well as optional data such as the serial numbers, device types, MAC addresses, manufacturer details or model information.
+4. Server Processing: The management server validates and stores device information in a central database. The server will return a JSON encoded payload containing a 'success' message that will be 'true' upon success. 
 5. Optional Configuration: Upon successful registration, the server may push initial configuration settings to the device, facilitating rapid deployment and operational readiness.
 
 ### 3.3 Security Considerations
