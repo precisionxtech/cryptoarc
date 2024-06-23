@@ -11,8 +11,8 @@ CryptoARC operates on the principles of DHCP-based server discovery and secure R
 
 ## 3.1 DHCP Options
 
-Option X (Server IP Address): Specifies the IP address of the management server to which devices should connect for registration.
-Option Y (Public Key): Optionally provides a base64-encoded public key for encrypting registration data, ensuring secure transmission between devices and servers.
+1. Option X (Server IP Address): Specifies the IP address of the management server to which devices should connect for registration.
+2. Option Y (Public Key): Optionally provides a base64-encoded public key for encrypting registration data, ensuring secure transmission between devices and servers.
 
 ## 3.2 Device Registration Process
 
