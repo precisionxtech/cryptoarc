@@ -33,3 +33,30 @@ Retry Mechanism: Devices implement exponential backoff and retry mechanisms for 
 Usage in Fleet or System Management: CryptoARC is designed to scale across fleet or system management environments, enabling centralized management and configuration of multiple devices. It supports seamless integration with existing network management tools and frameworks.
 
 
+## Example DHCP Configuration File
+```
+# Global settings for DHCP server
+default-lease-time 600;
+max-lease-time 7200;
+option domain-name "example.com";
+option domain-name-servers 8.8.8.8, 8.8.4.4;
+
+# Subnet definition
+subnet 192.168.1.0 netmask 255.255.255.0 {
+    range 192.168.1.100 192.168.1.200;
+    option routers 192.168.1.1;
+    option subnet-mask 255.255.255.0;
+
+    # Define CryptoARC options
+    option CryptoARC-Server-IP code 230 = ip-address;
+    option CryptoARC-Public-Key code 231 = text;
+
+    # DHCP pool configuration
+    pool {
+        allow unknown-clients;
+        option CryptoARC-Server-IP 192.168.1.10;  # Replace with your management server IP
+        option CryptoARC-Public-Key "base64_encoded_public_key_here";
+        range 192.168.1.100 192.168.1.150;
+    }
+}
+```
